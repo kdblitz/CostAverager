@@ -33,6 +33,6 @@ public class App
 		//Calculate stuff
 		StatsCalculator calc = new StatsCalculator(obj.getJSONArray("data_values"));
 		StockInventory info = calc.calculateCostAverage(budget,interval,boardLot);
-		System.out.println(info.getOverallIncome());
+		System.out.println(info.showSummary());
 	}
 }

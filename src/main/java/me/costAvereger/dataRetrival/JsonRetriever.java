@@ -20,7 +20,7 @@ public class JsonRetriever {
 
 		if (isCacheEnabled) {
 			LocalFileReader tmpReader = new LocalFileReader(cacheFileName);
-			if (tmpReader.doesFileExist()) {
+			if (tmpReader.doesFileExistAndLatest()) {
 				dataFetcher = tmpReader;
 			} else {
 				dataFetcher = new UrlReader(urlString);

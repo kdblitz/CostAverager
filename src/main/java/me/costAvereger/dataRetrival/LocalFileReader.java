@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Calendar;
+import java.util.Date;
 
 public class LocalFileReader extends DataFetcher {
 	String fileName;
@@ -33,8 +35,22 @@ public class LocalFileReader extends DataFetcher {
 		}
 	}
 	
-	public boolean doesFileExist() {
+	/**
+	 * Determine if the latest data file was already downloaded.
+	 * @return true if file exist and was retrieved today
+	 */
+	public boolean doesFileExistAndLatest() {
 		File file = new File(JsonRetriever.CACHE_DIR+"/"+fileName);
-		return file.exists();
+		if (file.exists()) {
+			// file was downloaded today
+			Calendar modifiedDate = Calendar.getInstance();
+			modifiedDate.setTimeInMillis(file.lastModified());
+
+			Calendar today = Calendar.getInstance();
+			return modifiedDate.get(Calendar.YEAR) == today.get(Calendar.YEAR) 
+					&& modifiedDate.get(Calendar.DAY_OF_YEAR) == today.get(Calendar.DAY_OF_YEAR);
+		}
+		// file doesn't exist
+		return false; 
 	}
 }

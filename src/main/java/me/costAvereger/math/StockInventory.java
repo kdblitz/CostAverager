@@ -52,4 +52,14 @@ public class StockInventory {
 	public double getOverallIncome() {
 		return getIncomePerShare() * stocksBought;
 	}
+	
+	public String showSummary() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Stocks on hand     :").append(stocksBought).append('\n');
+		sb.append("Average stock cost :").append(String.format("%.2f", averageCost)).append('\n');
+		sb.append("Invested amount    :").append(String.format("%.2f", averageCost*stocksBought)).append('\n');
+		sb.append("Current value      :").append(String.format("%.2f", currentCost*stocksBought)).append('\n');
+		sb.append("Income/Loss        :").append(String.format("%.2f", getIncomePerShare()*stocksBought)).append('\n');
+		return sb.toString();
+	}
 }
