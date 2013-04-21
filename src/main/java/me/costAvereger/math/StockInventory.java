@@ -1,7 +1,7 @@
 package me.costAvereger.math;
 
 /**
- * Clas which stores statistics related on a specific stock
+ * Class which stores statistics related on a specific stock
  *
  */
 public class StockInventory {
