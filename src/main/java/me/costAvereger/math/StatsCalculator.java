@@ -40,6 +40,7 @@ public class StatsCalculator {
 				JSONArray rawData = data.getJSONArray(ctr);
 				Calendar currentDate = Calendar.getInstance();
 				currentDate.setTimeInMillis(rawData.getLong(0));
+
 				if(scheduler == null) {
 					scheduler = new Scheduler(interval,currentDate);
 				}
@@ -116,7 +117,7 @@ public class StatsCalculator {
 			interval = interval.trim();
 			period = getPeriod(interval.charAt(interval.length()-1));
 			this.interval = Integer.parseInt(interval.substring(0, interval.length()-1));
-			investmentDay = startDay;
+			investmentDay = (Calendar)startDay.clone();
 		}
 		
 		public int getPeriod(char abbr) {
